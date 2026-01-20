@@ -1,0 +1,66 @@
+{
+    "name": "red-jasmine/user-core",
+    "description": "用户通用组件包，提供用户相关的通用功能和组件",
+    "keywords": [
+        "red-jasmine",
+        "laravel",
+        "user-core",
+        "user",
+        "core"
+    ],
+    "homepage": "https://github.com/red-jasmine/user-core",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "liushoukun",
+            "email": "liushoukun66@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "red-jasmine/support": "1.0.x-dev",
+        "red-jasmine/socialite": "1.0.x-dev",
+        "red-jasmine/captcha": "1.0.x-dev",
+        "red-jasmine/jwt-auth": "1.0.x-dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "RedJasmine\\UserCore\\": "src/",
+            "RedJasmine\\UserCore\\Database\\Factories\\": "database/factories/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RedJasmine\\UserCore\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@composer run prepare",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "analyse": "vendor/bin/phpstan analyse",
+        "test": "vendor/bin/pest",
+        "test-coverage": "vendor/bin/pest --coverage",
+        "format": "vendor/bin/pint"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RedJasmine\\UserCore\\UserCorePackageServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-master": "1.0.x-dev",
+            "dev-main": "1.0.x-dev",
+            "dev-develop": "1.0.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

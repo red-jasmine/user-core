@@ -1,0 +1,62 @@
+<?php
+
+namespace RedJasmine\UserCore\Domain\Services\Login\Providers;
+
+use Illuminate\Support\Facades\Auth;
+use RedJasmine\UserCore\Domain\Exceptions\LoginException;
+use RedJasmine\UserCore\Domain\Models\BaseUserModel;
+use RedJasmine\UserCore\Domain\Repositories\BaseUserRepositoryInterface;
+use RedJasmine\UserCore\Domain\Services\Login\Contracts\UserLoginServiceProviderInterface;
+use RedJasmine\UserCore\Domain\Services\Login\Data\UserLoginData;
+
+class PasswordLoginServiceProvider implements UserLoginServiceProviderInterface
+{
+    public const  NAME = 'password';
+
+
+    protected BaseUserRepositoryInterface $repository;
+    protected string                      $guard;
+
+    public function init(BaseUserRepositoryInterface $repository, string $guard) : static
+    {
+        $this->repository = $repository;
+
+        $this->guard = $guard;
+
+        return $this;
+    }
+
+    public function captcha(UserLoginData $data)
+    {
+        // TODO: Implement captcha() method.
+    }
+
+
+    /**
+     * @param  UserLoginData  $data
+     *
+     * @return BaseUserModel
+     * @throws LoginException
+     */
+    public function login(UserLoginData $data) : BaseUserModel
+    {
+        // 按用户名称查询 用户
+        if ($user = $this->repository->findByAccount($data->data['account'])) {
+            // 手动验证密码
+            $credentials = [
+                'password' => $data->data['password']
+            ];
+            if (!Auth::guard($this->guard)->getProvider()->validateCredentials($user, $credentials)) {
+                throw new LoginException('账号或者密码错误');
+            }
+
+            // 返回用户信息
+            return $user;
+        }
+
+        throw new LoginException('账号或者密码错误');
+
+    }
+
+
+}

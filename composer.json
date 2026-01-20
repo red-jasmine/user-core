@@ -18,10 +18,10 @@
         }
     ],
     "require": {
-        "red-jasmine/support": "1.0.x-dev",
-        "red-jasmine/socialite": "1.0.x-dev",
-        "red-jasmine/captcha": "1.0.x-dev",
-        "red-jasmine/jwt-auth": "1.0.x-dev"
+        "red-jasmine/support": "^1.0",
+        "red-jasmine/socialite": "^1.0",
+        "red-jasmine/captcha": "^1.0",
+        "red-jasmine/jwt-auth": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -61,6 +61,5 @@
             "dev-develop": "1.0.x-dev"
         }
     },
-    "minimum-stability": "dev",
     "prefer-stable": true
 }

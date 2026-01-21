@@ -19,9 +19,9 @@ enum UserGenderEnum: string
     public static function labels() : array
     {
         return [
-            self::SECRECY->value => __('red-jasmine-user::user.enums.gender.secrecy'),
-            self::MALE->value    => __('red-jasmine-user::user.enums.gender.male'),
-            self::FEMALE->value  => __('red-jasmine-user::user.enums.gender.female'),
+            self::SECRECY->value => __('red-jasmine-user-core::user.enums.gender.secrecy'),
+            self::MALE->value    => __('red-jasmine-user-core::user.enums.gender.male'),
+            self::FEMALE->value  => __('red-jasmine-user-core::user.enums.gender.female'),
 
         ];
     }
